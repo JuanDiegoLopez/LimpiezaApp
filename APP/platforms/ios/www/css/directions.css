@@ -1,0 +1,42 @@
+.content{
+  margin-top: 30px;
+}
+
+.panel{
+  margin-bottom: 0px !important;
+}
+.panel-heading{
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+  color: #fff !important;
+  background-color: #2886d2 !important;
+}
+
+.panel-body{
+  font-size: 20px;
+  padding: 15px 0px !important;
+  margin: 0;
+}
+
+.btn{
+  float: right;
+  width: 100px;
+  margin-bottom: 5px;
+}
+
+.new{
+  padding: 10px;
+  width: 100% !important;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.direction{
+  width: 60%;
+}
+
+.img{
+  text-align: center;
+  margin: 0 auto;
+}

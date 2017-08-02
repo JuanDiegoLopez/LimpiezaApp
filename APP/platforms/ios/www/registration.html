@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src='js/registration.js'></script>
+
+        <title>Nuevo usuario</title>
+    </head>
+    <body>
+
+        <div class="container">
+          <div class="card card-container">
+            <h2>Registrarse</h2>
+            <div id="response-container"></div>
+              <input type="text" class='form-control' maxlength="100" id='name' placeholder="Nombre" required>
+              <br>
+              <input type="text" class="form-control" maxlength="50" id="username" placeholder="Usuario" required/>
+              <br>
+              <input type="text" class='form-control' maxlength="10" id='cell' placeholder="Celular" required/>
+              <br>
+              <input type="email" class='form-control' maxlength="100" id='email' placeholder="Correo electronico" required/>
+              <br>
+              <input type="password" class="form-control" maxlength="16" id='password'placeholder="Contraseña" required/>
+              <br>
+              <input type="password" class="form-control" maxlength="16" id='rpassword'placeholder="Repita la contraseña" required/>
+              <br>
+              <button type='submit' id='submit' class="btn  btn-primary btn-block"  onclick="registration()">Registrarse</button>
+            <br>
+            <a href="index.html" style='float:right'>Iniciar Sesion</a>
+          </div><!-- /card-container -->
+    </div>
+
+    </body>
+</html>
