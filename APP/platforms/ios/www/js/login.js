@@ -62,9 +62,12 @@ function Login() {
           token: signedToken
         };
 
+        
+
         //Se guarda la variable en LocalSorage y se redirecciona.
 
         session = JSON.stringify(session);
+        document.cookie = session;
         localStorage.setItem("session", session);
         location.href = 'routes/reservations.html';
       }

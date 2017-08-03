@@ -12,8 +12,6 @@ function AddHtml() {
     var id_user = JSON.parse(localStorage.getItem("session")).id;
     var deviceSessionId = getDeviceSessionId();
 
-    console.log(deviceSessionId);
-
     $('#content').html(`
         <p style="background:url(https://maf.pagosonline.net/ws/fp?id=`+ deviceSessionId + id_user + `)"></p>
         <img src="https://maf.pagosonline.net/ws/fp/clear.png?id=`+ deviceSessionId + id_user + `">
@@ -24,27 +22,44 @@ function AddHtml() {
 }
 
 
+function getIp() {
+    var ip;
+    $.ajax({
+        url: 'http://jsonip.com/',
+        dataType: 'JSON',
+        type: 'get',
+        async: false,
+        success: function (res) { ip = res.ip; }
+    });
+
+    return ip;
+}
+
 function Pay() {
     var ApiKey = "4Vj8eK4rloUd272L48hsrarnUA";
     var merchantId = "508029";
-    var referenceCode = "payment_test_00000001";
+    var referenceCode = "prueba0001";
     var tx_value = 10000;
     var currency = "COP";
     var signature = md5(ApiKey + '~' + merchantId + '~' + referenceCode + '~' + tx_value + '~' + currency);
     var deviceSessionId = getDeviceSessionId();
 
     var name = $("#name").val();
+    var dni = $("#dni").val();
     var email = $("#email").val();
+    var phone = $("#phone").val();
     var creditCardNumber = $("#creditCardNumber").val();
     var securityCode = $("#securityCode").val();
     var creditCardName = $("#creditCardName").val();
-    var month = $('month').val();
-    var year = $('year').val();
-    var expirationDate = year+"/"+month;
+    var month = $('#month').val();
+    var year = $('#year').val();
+    var expirationDate = year + "/" + month;
     var address = $("#address").val();
     var city = $("#city").val();
     var state = $("#state").val();
-
+    var ip = getIp();
+    var cookie = md5(document.cookie);
+    var userAgent = navigator.userAgent;
 
     var datos =
         {
@@ -57,7 +72,7 @@ function Pay() {
             transaction: {
                 order: {
                     accountId: "512321",
-                    referenceCode: "payment_test_00000001",
+                    referenceCode: referenceCode,
                     description: "payment test",
                     language: "es",
                     signature: signature,
@@ -82,32 +97,48 @@ function Pay() {
                 },
                 payer: {
                     fullName: name,
-                    "emailAddress": email,
-                    "dniNumber": dni,
-                    "billingAddress": {
-                        "street1": address,
-                        "city": city,
-                        "state": state,
-                        "country": "CO",
+                    emailAddress: email,
+                    dniNumber: dni,
+                    billingAddress: {
+                        street1: address,
+                        city: city,
+                        state: state,
+                        country: "CO",
                     }
                 },
-                "creditCard": {
-                    "number": creditCardNumber,
-                    "securityCode": securityCode,
-                    "expirationDate": expirationDate,
-                    "name": creditCardName
+                creditCard: {
+                    number: creditCardNumber,
+                    securityCode: securityCode,
+                    expirationDate: expirationDate,
+                    name: creditCardName
                 },
-                "extraParameters": {
-                    "INSTALLMENTS_NUMBER": 1
+                extraParameters: {
+                    INSTALLMENTS_NUMBER: 1
                 },
-                "type": "AUTHORIZATION_AND_CAPTURE",
-                "paymentMethod": "VISA",
-                "paymentCountry": "CO",
-                "deviceSessionId": deviceSessionId,
-                "ipAddress": "127.0.0.1",
-                "cookie": "pt1t38347bs6jc9ruv2ecpv7o2",
-                "userAgent": "Mozilla/5.0 (Windows NT 5.1; rv:18.0) Gecko/20100101 Firefox/18.0"
+                type: "AUTHORIZATION_AND_CAPTURE",
+                paymentMethod: "VISA",
+                paymentCountry: "CO",
+                deviceSessionId: deviceSessionId,
+                ipAddress: ip,
+                cookie: cookie,
+                userAgent: userAgent
             },
-            "test": true
+            test: true
         }
+        
+    datos = JSON.stringify(datos);
+    
+    $.ajax({
+        data: datos,
+        url: 'https://sandbox.api.payulatam.com/payments-api/4.0/service.cgi',
+        dataType: 'json',
+        type: 'post',
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+        },
+        success: function (res) {
+            console.log(res);
+        }
+    });
+
 }
