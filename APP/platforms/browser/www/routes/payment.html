@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Limpieza</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="../css/loading.css">
+  <link rel="stylesheet" href="../css/reservations.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <script src="../js/jquery-3.2.1.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+  <script type="text/javascript" src='../js/session.js'></script>
+  <script type="text/javascript" src='../js/navbar.js'></script>
+  <script type="text/javascript" src='../js/md5.min.js'></script>
+  
+</head>
+
+<body>
+  <nav id='navbar' class="navbar navbar-default navbar-fixed-top">
+    <span id='title-nav' style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Pagos</span>
+    <div id="mySidenav" class="sidenav">
+      <ul>
+        <li><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a></li>
+        <li class='active'><a href="reservations.html">Tus reservas</a></li>
+        <li><a href="newReservation.html">Nueva Reserva</a></li>
+        <li><a href="directions.html">Direcciones</a></li>
+        <li><a href="contact.html">Contactanos</a></li>
+        <li><a href="../index.html" onclick="Logout()">Cerrar sesion</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <br>
+  <br>
+  <label class='form-control' for="payment">Seleccione el medio de pago</label>
+  <br>
+  <input type="radio" value='creditcard' name='payment'> Tarjeta de credito
+  <input type="radio" value='efecty' name='payment'> Pago en efectivo
+  <input type="radio" value='debitcard' name='payment'> Tarjeta debito
+
+  <select class='form-control' name="card">
+        <option value="VISA">Visa</option>
+        <option value="	MASTERCARD">Mastercard</option>
+        <option value="DINERS">Diners</option>
+    </select>
+
+  <input class='form-control' type="text" id='name' placeholder="Nombre y Apellidos">
+  <input class='form-control' type="number" id='dni' placeholder="Numero de identificacion">
+  <input class='form-control' type="email" id='email' placeholder="Correo electronico">
+  <input class='form-control' type="number" id='phone' placeholder='Telefono'>
+  <input class='form-control' type="number" id='creditCardNumber' placeholder="Numero de la tarjeta">
+  <input class='form-control' type="number" id='securityCode' placeholder="Codigo de seguridad">
+  <input class='form-control' type="text" id='creditCardName' placeholder="Nombre que aparece en la tarjeta">
+  <label class='form-control' for="expirationDate">Fecha de expiracíon</label> Mes:
+  <select class='form-control' id="month">
+        <option value="01">Enero</option>
+        <option value="02">Febrero</option>
+        <option value="03">Marzo</option>
+        <option value="04">Abril</option>
+        <option value="05">Mayo</option>
+        <option value="06">Junio</option>
+        <option value="07">Julio</option>
+        <option value="08">Agosto</option>
+        <option value="09">Septiembre</option>
+        <option value="10">Octubre</option>
+        <option value="11">Noviembre</option>
+        <option value="12">Diciembre</option>
+    </select> Año:
+  <input class='form-control' type="text" name='year'>
+
+  <label class='form-control' for="ship">Datos de envio</label>
+  <input class='form-control' type="text" id='address' placeholder="Direccion">
+  <input class='form-control' type="text" id='city' placeholder="Ciudad">
+  <input class='form-control' type="text" id='state' placeholder="Departamento">
+
+  <br>
+  <div id='content'></div>
+
+  <button class="btn btn-success" style="width:100% !important;" onclick="Pay()">FINALIZAR PAGO</button>
+  
+  <div class='modal'></div>
+
+  <script type="text/javascript" src='../js/payment.js'></script>
+</body>
+
+</html>

@@ -1,6 +1,8 @@
 window.onload=MyReservations();
 function MyReservations(){
   var id_usuario = JSON.parse(localStorage.getItem("session")).id;
+  console.log(JSON.parse(localStorage.getItem("session")).token);
+
   $.getJSON('https://juandlopez.000webhostapp.com/limpieza/reservations.php',{'id_usuario': id_usuario}, function(res){
     console.log(res);
     //Condicion si no tiene reservas
@@ -65,6 +67,8 @@ function MyReservations(){
                                 <img class='img' src='http://juandlopez.000webhostapp.com/limpieza/img/`+emp.foto+`'></img>
                               </div>
                               <div class='nombre'>`+emp.nombre+`</div>
+                              <br>
+                              <button class='btn btn-success'><a href='payment.html?`+res[i].id_reserva+`'>PAGAR</button>
                             </div>
                           </div>
                           `);
