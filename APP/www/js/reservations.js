@@ -68,7 +68,7 @@ function MyReservations(){
                               </div>
                               <div class='nombre'>`+emp.nombre+`</div>
                               <br>
-                              <button class='btn btn-success'><a href='payment.html?`+res[i].id_reserva+`'>PAGAR</button>
+                              
                             </div>
                           </div>
                           `);

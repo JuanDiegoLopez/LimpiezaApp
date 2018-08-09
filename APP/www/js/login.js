@@ -41,25 +41,25 @@ function Login() {
 
         var secret = "gameofthrones";
 
-        var stringifiedHeader = CryptoJS.enc.Utf8.parse(JSON.stringify(header));
-        var encodedHeader = base64url(stringifiedHeader);
+        //var stringifiedHeader = CryptoJS.enc.Utf8.parse(JSON.stringify(header));
+        //var encodedHeader = base64url(stringifiedHeader);
 
-        var stringifiedData = CryptoJS.enc.Utf8.parse(JSON.stringify(data));
-        var encodedData = base64url(stringifiedData);
+        //var stringifiedData = CryptoJS.enc.Utf8.parse(JSON.stringify(data));
+        //var encodedData = base64url(stringifiedData);
 
-        var token = encodedHeader + "." + encodedData;
+        //var token = encodedHeader + "." + encodedData;
 
-        var signature = CryptoJS.HmacSHA256(token, secret);
-          signature = base64url(signature);
+        //var signature = CryptoJS.HmacSHA256(token, secret);
+          //signature = base64url(signature);
 
-        var signedToken = token + "." + signature;
+        //var signedToken = token + "." + signature;
 
         //Variable que se almacenara en LocalStorage
 
         var session = {
           login: 'true',
           id: JSON.parse(response).id,
-          token: signedToken
+          //token: signedToken
         };
 
         
